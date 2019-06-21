@@ -21,15 +21,20 @@ app.get('/selfie', (req, res) => {
 });
 server.on('connection',ws =>{
     ws.on('message',message=>{
-        let base64Data = message['URL'].replace('data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=image.png;base64,',"")
+        let obj = JSON.parse(message);
+        let base64Data = obj['URL'].replace('data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=image.png;base64,',"")
         fs.writeFile(path.resolve(__dirname, './uploads/image '+index+'.png'), base64Data, 'base64', function(err) {
             if (err) throw err;
         });
-        s3fun(base64Data,'image '+index+'.png',message['type']);
-        index++;
-        while (!s3Check('image '+index+'.png',message['type'])){}
+
+        //s3fun(base64Data,'image '+index+'.png',obj['type']);
+        //index++;
+        //while (!s3Check('image '+index+'.png',obj['type'])){
+
+        //}
         //send photo back to client
         server.clients.forEach(clients => {
+
             if (clients.readyState=== WebSocket.OPEN){
 
             }});});});
@@ -78,7 +83,8 @@ let s3Check = async (bucketName,fileName) => {
         const signedUrl = await s3.getSignedUrl('getObject', params).promise();
         // Do something with signedUrl
         return true
-    } catch (headErr) {
+    }
+    catch (headErr) {
         if (headErr.code === 'NotFound') {
             return false
             // Handle no object on cloud here

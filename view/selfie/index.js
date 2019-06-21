@@ -28,13 +28,14 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/png");
     cameraOutput.classList.add("taken");
+    document.getElementById('camera--trigger').style.visibility = 'hidden';
     let url = cameraOutput.src.replace(/^data:image\/[^;]+/, 'data:application/octet-stream');
     dlCanvas(url)
     // track.stop();
 };
 function dlCanvas(url) {
     url = url.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=image.png');
-    ws.send({'URL':url,type:'selfie'});
+    ws.send(JSON.stringify({"URL" : url, "type":"selfie"}));
     document.getElementById('submit--trigger').href=url
 }
 // Start the video stream when the window loads

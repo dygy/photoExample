@@ -45,6 +45,20 @@ html, body{
     right: 1%;
     bottom: 80%;
 }
+#retry--trigger{
+    width: 120px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+    position: fixed;
+    right: 1%;
+    bottom: 75%;
+}
 .taken{
     height: 100px!important;
     width: 100px!important;
