@@ -9,6 +9,6 @@
     "ws": "^7.0.1"
   },
   "scripts": {
-    "run": "node app"
+    "start": "node app"
   }
 }
