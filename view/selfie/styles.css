@@ -36,8 +36,8 @@ html, body{
 #choice1{
     width: 100px;
     height: 50px;
-    background-color: black;
     color: white;
+    background-color: black;
     font-size: 16px;
     border-radius: 30px;
     border: none;
@@ -46,7 +46,7 @@ html, body{
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
     position: fixed;
     bottom: 20%;
-    left: calc(50% - 100px);
+    left: calc(70% - 100px);
     z-index: 2;
 }
 #choice2{
@@ -62,25 +62,30 @@ html, body{
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
     position: fixed;
     bottom: 20%;
-    left: calc(30% - 100px);
+    left: calc(40% - 100px);
     z-index: 2;
 }
-#choice3{
-    width: 100px;
-    height: 50px;
+#file-trigger{
+    width: 134px;
     background-color: black;
     color: white;
     font-size: 16px;
     border-radius: 30px;
     border: none;
-    padding: 15px 20px;
+    padding: 10px 20px;
     text-align: center;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
     position: fixed;
-    bottom: 20%;
-    left: calc(70% - 100px);
+    right: 80%;
+    bottom: 50%;
     z-index: 2;
+    cursor:pointer;
 }
+#file{
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+ }
 #submit--trigger{
     width: 100px;
     background-color: black;
@@ -95,6 +100,21 @@ html, body{
     right: 1%;
     bottom: 50%;
     z-index: 2;
+}
+#download--trigger{
+    width: 100px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+    position: fixed;
+    right: 1%;
+    bottom: 40%;
+    z-index: 4;
 }
 #retry--trigger{
     width: 120px;
@@ -121,19 +141,22 @@ html, body{
     right: 20px;
     z-index: 2;
 }
-BODY {
-    background-color: #222;
-    background-image: linear-gradient( to right,
-    rgba(0,0,0,.2) 50%,
-    rgba(0,0,0,0)  50%
-    );
-    background-size: 2em 2em;
-
-    z-index: 2;
+.labl {
+    display : block;
+    width: 400px;
 }
-
-svg {
-    bottom: 10%;
-    width: 50px;
-    height: 50px;
+.labl > input{ /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+}
+.labl > input + div{ /* DIV STYLES */
+    cursor:pointer;
+    border:2px solid transparent;
+}
+.labl > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */
+    background-color: #de0700 !important;
+    border: 1px solid #ff6600 !important;
+}
+#base64image{
+    visibility: hidden;
 }
