@@ -45,7 +45,7 @@ html, body{
     text-align: center;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
     position: fixed;
-    bottom: 20%;
+    bottom: 5%;
     left: calc(70% - 100px);
     z-index: 2;
 }
@@ -61,12 +61,12 @@ html, body{
     text-align: center;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
     position: fixed;
-    bottom: 20%;
+    bottom: 5%;
     left: calc(40% - 100px);
     z-index: 2;
 }
 #file-trigger{
-    width: 134px;
+    width: 100px;
     background-color: black;
     color: white;
     font-size: 16px;
@@ -76,7 +76,7 @@ html, body{
     text-align: center;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
     position: fixed;
-    right: 80%;
+    right: 70%;
     bottom: 50%;
     z-index: 2;
     cursor:pointer;

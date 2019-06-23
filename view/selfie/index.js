@@ -36,7 +36,7 @@ let cameraStart = () => {
             cameraView.srcObject = stream;
         })
         .catch(function(error) {
-            console.error("Oops. Something is broken.", error);
+            console.error("Something went wrong with your camera .", error);
         });
 }// Take a picture when cameraTrigger is tapped
 
@@ -53,7 +53,6 @@ cameraTrigger.onclick = function() {
     // track.stop();
 };
 let dlCanvas = (url) => {
-    console.log(url);
     url = url.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=image.png');
     document.getElementById('download--trigger').href=url;
     setUpPhoto(url.replace('data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=image.png',''))
@@ -79,7 +78,6 @@ let getBase64=() => {
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
-        console.log(reader.result);
         setUpPhoto(reader.result)
     };
     reader.onerror = function (error) {
