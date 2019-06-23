@@ -22,7 +22,7 @@ app.get('/selfie', (req, res) => {
 server.on('connection',ws =>{
     ws.on('message',message=>{
         let obj = JSON.parse(message);
-        let base64Data = obj['URL'].replace('data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=image.png;base64,',"")
+        let base64Data = obj['photo1'].replace('data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=image.png;base64,',"")
         fs.writeFile(path.resolve(__dirname, './uploads/image '+index+'.png'), base64Data, 'base64', function(err) {
             if (err) throw err;
 

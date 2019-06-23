@@ -38,7 +38,8 @@ let cameraStart = () => {
         .catch(function(error) {
             console.error("Something went wrong with your camera .", error);
         });
-}// Take a picture when cameraTrigger is tapped
+};
+// Take a picture when cameraTrigger is tapped
 
 
 cameraTrigger.onclick = function() {
@@ -83,7 +84,7 @@ let getBase64=() => {
     reader.onerror = function (error) {
         console.log('Error: ', error);
     };
-}
+};
 
 
 let takePhotosOut = () =>{
