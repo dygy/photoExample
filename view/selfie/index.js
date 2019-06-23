@@ -1,9 +1,13 @@
 const ws = new WebSocket('ws://localhost:3000');
 // Set constraints for the video stream
-
+let photos =0;
 let constraints = {video: {facingMode: "user"}, audio: false};
 let track = null;
-
+let message = {
+    photo1:null,
+    photo2:null,
+    type:null
+};
 // Define constants
 const cameraView = document.querySelector("#camera--view"),
     cameraOutput = document.querySelector("#camera--output"),
@@ -33,11 +37,11 @@ cameraTrigger.onclick = function() {
     dlCanvas(url)
     // track.stop();
 };
-function dlCanvas(url) {
+let dlCanvas = (url) => {
     url = url.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=image.png');
     ws.send(JSON.stringify({"URL" : url, "type":"selfie"}));
     document.getElementById('submit--trigger').href=url
-}
+};
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
 
@@ -52,4 +56,11 @@ if ('serviceWorker' in navigator) {
     });
 } else {
     console.log('CLIENT: service worker is not supported.');
+}
+
+let takephotoOut = () =>{
+
+}
+let setUpPhoto = (base64) =>{
+
 }

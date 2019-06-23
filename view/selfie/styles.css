@@ -10,6 +10,7 @@ html, body{
     height: 100%;
     width: 100%;
     object-fit: cover;
+    z-index: 1;
 }
 
 #camera--view, #camera--sensor, #camera--output {
@@ -28,8 +29,57 @@ html, body{
     text-align: center;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
     position: fixed;
-    bottom: 30px;
+    bottom: 30%;
     left: calc(50% - 100px);
+    z-index: 2;
+}
+#choice1{
+    width: 100px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+    position: fixed;
+    bottom: 20%;
+    left: calc(50% - 100px);
+    z-index: 2;
+}
+#choice2{
+    width: 100px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+    position: fixed;
+    bottom: 20%;
+    left: calc(30% - 100px);
+    z-index: 2;
+}
+#choice3{
+    width: 100px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+    position: fixed;
+    bottom: 20%;
+    left: calc(70% - 100px);
+    z-index: 2;
 }
 #submit--trigger{
     width: 100px;
@@ -44,6 +94,7 @@ html, body{
     position: fixed;
     right: 1%;
     bottom: 50%;
+    z-index: 2;
 }
 #retry--trigger{
     width: 120px;
@@ -58,6 +109,7 @@ html, body{
     position: fixed;
     right: 1%;
     bottom: 65%;
+    z-index: 2;
 }
 .taken{
     height: 100px!important;
@@ -68,4 +120,20 @@ html, body{
     top: 20px;
     right: 20px;
     z-index: 2;
+}
+BODY {
+    background-color: #222;
+    background-image: linear-gradient( to right,
+    rgba(0,0,0,.2) 50%,
+    rgba(0,0,0,0)  50%
+    );
+    background-size: 2em 2em;
+
+    z-index: 2;
+}
+
+svg {
+    bottom: 10%;
+    width: 50px;
+    height: 50px;
 }

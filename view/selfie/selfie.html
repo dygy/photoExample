@@ -7,13 +7,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Camera app">
     <meta name="apple-mobile-web-app-title" content="Camera app">
-
     <!-- Name of the app -->
     <title>Camera App</title>
-
     <!-- Link to site manifest -->
     <link rel="manifest" href="site.webmanifest">
-
     <!-- Links to icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
@@ -23,20 +20,132 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div>
+    <div id="choice1">
+    <input type="radio" id="filterChoice1"
+           name="filter" value="choto" checked>
+    <label for="filterChoice1">Choto</label>
+    </div>
+    <svg viewBox="0 0 200 200">
+        <defs>
+            <!-- Разноцветный градиент -->
+            <linearGradient id="gradient--colors"
+                            x1="0" y1="100%"
+                            x2="100%" y2="0">
+                <stop offset="0%"
+                      stop-color="dodgerblue"/>
+                <stop offset="50%"
+                      stop-color="fuchsia"/>
+                <stop offset="100%"
+                      stop-color="yellow"/>
+            </linearGradient>
 
+            <!-- Градиент прозрачности разноцветного слоя -->
+            <radialGradient id="gradient--colors-transparency"
+                            fx="25%" fy="25%">
+                <stop offset="0%"
+                      stop-color="black"/>
+                <stop offset="30%"
+                      stop-color="black"
+                      stop-opacity=".2"/>
+                <stop offset="97%"
+                      stop-color="white"
+                      stop-opacity=".4"/>
+                <stop offset="100%"
+                      stop-color="black"/>
+            </radialGradient>
+
+            <!-- Маска прозрачности разноцветного слоя -->
+            <mask id="mask--colors-transparency">
+                <rect fill="url(#gradient--colors-transparency)"
+                      width="100%" height="100%"></rect>
+            </mask>
+
+            <!-- Градиент для прозрачности -->
+            <radialGradient id="gradient--bw-light" fy="10%">
+                <stop offset="60%"
+                      stop-color="black"
+                      stop-opacity="0"/>
+                <stop offset="90%"
+                      stop-color="white"
+                      stop-opacity=".25"/>
+                <stop offset="100%"
+                      stop-color="black"/>
+            </radialGradient>
+
+            <!-- Маска для нижнего отражения -->
+            <mask id="mask--light-bottom">
+                <rect fill="url(#gradient--bw-light)"
+                      width="100%" height="100%"></rect>
+            </mask>
+
+            <!-- Маска для верхнего отражения -->
+            <mask id="mask--light-top">
+                <rect fill="url(#gradient--bw-light)"
+                      width="100%" height="100%"
+                      transform="rotate(180, 100, 100)"></rect>
+            </mask>
+
+            <!-- Градиент блика -->
+            <radialGradient id="gradient--spot" fy="20%">
+                <stop offset="10%"
+                      stop-color="white"
+                      stop-opacity=".7"/>
+                <stop offset="70%"
+                      stop-color="white"
+                      stop-opacity="0"/>
+            </radialGradient>
+        </defs>
+
+        <!-- Нижний блик -->
+        <ellipse rx="40" ry="20" cx="150" cy="150"
+                 fill="url(#gradient--spot)"
+                 transform="rotate(-225, 150, 150)">
+        </ellipse>
+
+        <!-- Нижнее отражение -->
+        <circle r="50%" cx="50%" cy="50%"
+                fill="aqua"
+                mask="url(#mask--light-bottom)">
+        </circle>
+
+        <!-- Верхнее отражение -->
+        <circle r="50%" cx="50%" cy="50%"
+                fill="yellow"
+                mask="url(#mask--light-top)">
+        </circle>
+
+
+        <!-- Верхний блик -->
+        <ellipse rx="55" ry="25" cx="55" cy="55"
+                 fill="url(#gradient--spot)"
+                 transform="rotate(-45, 55, 55)">
+        </ellipse>
+
+        <!-- Фигура с маской и разноцветным градиентом -->
+        <circle r="50%" cx="50%" cy="50%"
+                fill="url(#gradient--colors)"
+                mask="url(#mask--colors-transparency)">
+        </circle>
+
+    </svg>
+    <input type="radio" id="filterChoice2" name="filter" value="bubble">
+        <label for="filterChoice2">Bubble</label>
+    </div>
+    <div id="choice3">
+    <input type="radio" id="filterChoice3"
+           name="filter" value="love">
+    <label for="filterChoice3">Love</label>
+    </div >
+ </div>
 <!-- Camera -->
 <main id="camera">
-
     <!-- Camera sensor -->
     <canvas id="camera--sensor"></canvas>
-
     <!-- Camera view -->
     <video id="camera--view" autoplay playsinline></video>
-
-
     <!-- Camera output -->
     <img src="//:0" alt="" id="camera--output" name="file">
-
     <!-- Camera trigger -->
     <a id="submit--trigger" download="image.png" href="#">Download</a>
     <button id="retry--trigger" onclick="window.location.reload()">Try Again</button>

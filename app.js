@@ -25,18 +25,15 @@ server.on('connection',ws =>{
         let base64Data = obj['URL'].replace('data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=image.png;base64,',"")
         fs.writeFile(path.resolve(__dirname, './uploads/image '+index+'.png'), base64Data, 'base64', function(err) {
             if (err) throw err;
+
         });
+        while (!checkFile('./uploads/','image '+index+'.png')){
 
-        //s3fun(base64Data,'image '+index+'.png',obj['type']);
-        //index++;
-        //while (!s3Check('image '+index+'.png',obj['type'])){
-
-        //}
+        }
         //send photo back to client
         server.clients.forEach(clients => {
-
             if (clients.readyState=== WebSocket.OPEN){
-
+            ws.send(base64Data)
             }});});});
 
 const upload = multer({
@@ -49,8 +46,7 @@ app.post(
     upload.single("file" /* name attribute of <file> element in your form */),
     (req, res) => {
         const tempPath = req.file.path;
-        const targetPath = path.join(__dirname, "./uploads/image.png");
-
+        const targetPath = path.join(__dirname, "./uploads/image"+index+".png");
         if (path.extname(req.file.originalname).toLowerCase() === ".png") {
             fs.rename(tempPath, targetPath, err => {
                 if (err) return handleError(err, res);
@@ -58,11 +54,15 @@ app.post(
                     .status(200)
                     .contentType("text/plain")
                     .end("File uploaded!");
+                while (!checkFile()){
+                }
+
+                ws.send(base64Data)
+                index++;
             });
         } else {
             fs.unlink(tempPath, err => {
                 if (err) return handleError(err, res);
-
                 res
                     .status(403)
                     .contentType("text/plain")
@@ -71,41 +71,15 @@ app.post(
         }
     }
 );
-
-
-let s3Check = async (bucketName,fileName) => {
-    let params = {
-        Bucket: bucketName,
-        Key: fileName
-    };
+let checkFile = (async(fileName,path) => {
     try {
-        const headCode = await s3.headObject(params).promise();
-        const signedUrl = await s3.getSignedUrl('getObject', params).promise();
-        // Do something with signedUrl
-        return true
+        const stat = await fs.lstat(path+fileName);
+        console.log(stat.isFile());
+    } catch(err) {
+        console.error(err);
     }
-    catch (headErr) {
-        if (headErr.code === 'NotFound') {
-            return false
-            // Handle no object on cloud here
-        }
-    }
-};
-let s3fun = (data,index,bucketName,fileName)=> {
-        let base64data = Buffer.from(data, 'binary');
-        let s3 = new AWS.S3();
-        s3.putObject( {
-        Bucket: bucketName,
-        Key: fileName,
-        timeout: 6000000,
-        Body: base64data,
-        ACL: 'public-read',
-        ContentType: 'binary'
-        }, ( error, data ) => {
-            if( error ) console.log( error );
-            console.log(data)
-        });
-};
+})();
+
 app.get("/image.png", (req, res) => {
     res.sendFile(path.join(__dirname, "./uploads/image.png"));
 });
