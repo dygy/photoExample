@@ -104,6 +104,6 @@ let sendOnWS = ()=>{
     if (message.photo1===null){alert('get first photo')}
     if (message.photo2===null){alert('get second photo')}
     if (message.type===null){alert('select filter')}
-    console.log(message);
+    document.getElementById('submit--trigger').style.visibility='hidden';
     ws.send(JSON.stringify(message));
 };
