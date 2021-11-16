@@ -2,7 +2,7 @@
   "name": "photoExample",
   "version": "1.0.0",
   "dependencies": {
-    "aws-sdk": "^2.479.0",
+    "aws-sdk": "^2.814.0",
     "body-parser": "latest",
     "express": "^4.17.1",
     "multer": "^1.4.1",
